@@ -1,4 +1,4 @@
-const API_URL = "https://quick-note-application-cmp6.onrender.com/api";
+const API_URL = "https://quick-note-application-rsps.onrender.com/api";
 
 // =========================
 // DOM ELEMENTS
