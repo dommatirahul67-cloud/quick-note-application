@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="Quick Notes - A modern full-stack note-taking application."
+  />
+
+  <title>Quick Notes</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="background-decoration decoration-one"></div>
+  <div class="background-decoration decoration-two"></div>
+
+  <div class="app-shell">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+      <div class="brand">
+
+        <div class="brand-icon">
+          📝
+        </div>
+
+        <div>
+          <h1 data-i18n="appTitle">
+            Quick Notes
+          </h1>
+
+          <p data-i18n="appSubtitle">
+            Capture your thoughts instantly.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="header-actions">
+
+        <div class="live-badge">
+          <span class="live-dot"></span>
+          <span data-i18n="live">
+            Live
+          </span>
+        </div>
+
+        <button
+          class="icon-button"
+          id="themeButton"
+          title="Toggle theme"
+          aria-label="Toggle theme"
+        >
+          🌙
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- SETTINGS BAR -->
+
+    <section class="settings-bar">
+
+      <div class="setting-group">
+
+        <span class="setting-label">
+          🌐
+          <span data-i18n="language">
+            Language
+          </span>
+        </span>
+
+        <select id="languageSelect">
+
+          <option value="en">
+            English
+          </option>
+
+          <option value="te">
+            తెలుగు
+          </option>
+
+          <option value="hi">
+            हिन्दी
+          </option>
+
+          <option value="es">
+            Español
+          </option>
+
+          <option value="fr">
+            Français
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="setting-group">
+
+        <span class="setting-label">
+          🔤
+          <span data-i18n="font">
+            Font
+          </span>
+        </span>
+
+        <select id="fontSelect">
+
+          <option value="Inter">
+            Inter
+          </option>
+
+          <option value="Poppins">
+            Poppins
+          </option>
+
+          <option value="Roboto">
+            Roboto
+          </option>
+
+          <option value="Open Sans">
+            Open Sans
+          </option>
+
+          <option value="Georgia">
+            Georgia
+          </option>
+
+          <option value="monospace">
+            Monospace
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="setting-group">
+
+        <span class="setting-label">
+          🎨
+          <span data-i18n="accent">
+            Accent
+          </span>
+        </span>
+
+        <div class="accent-options">
+
+          <button
+            class="accent-button purple active"
+            data-color="#6366f1"
+            aria-label="Purple"
+          ></button>
+
+          <button
+            class="accent-button blue"
+            data-color="#2563eb"
+            aria-label="Blue"
+          ></button>
+
+          <button
+            class="accent-button green"
+            data-color="#16a34a"
+            aria-label="Green"
+          ></button>
+
+          <button
+            class="accent-button orange"
+            data-color="#ea580c"
+            aria-label="Orange"
+          ></button>
+
+          <button
+            class="accent-button pink"
+            data-color="#db2777"
+            aria-label="Pink"
+          ></button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MAIN -->
+
+    <main>
+
+      <!-- CREATE NOTE -->
+
+      <section class="composer glass-card">
+
+        <div class="section-title">
+
+          <div>
+            <span class="eyebrow">
+              ✨
+              <span data-i18n="createEyebrow">
+                CREATE
+              </span>
+            </span>
+
+            <h2 data-i18n="createTitle">
+              Create a New Note
+            </h2>
+
+            <p data-i18n="createSubtitle">
+              Turn your thoughts into something worth remembering.
+            </p>
+          </div>
+
+          <div class="composer-icon">
+            ✍️
+          </div>
+
+        </div>
+
+
+        <form id="noteForm">
+
+          <div class="form-group">
+
+            <label
+              for="title"
+              data-i18n="titleLabel"
+            >
+              Title
+            </label>
+
+            <input
+              type="text"
+              id="title"
+              maxlength="100"
+              placeholder="Enter note title..."
+              data-i18n-placeholder="titlePlaceholder"
+              required
+            />
+
+            <div class="input-meta">
+
+              <span></span>
+
+              <span id="titleCounter">
+                0 / 100
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label
+              for="content"
+              data-i18n="contentLabel"
+            >
+              Content
+            </label>
+
+            <textarea
+              id="content"
+              rows="7"
+              maxlength="2000"
+              placeholder="Write your note here..."
+              data-i18n-placeholder="contentPlaceholder"
+              required
+            ></textarea>
+
+            <div class="input-meta">
+
+              <span data-i18n="characterLimit">
+                Maximum 2000 characters
+              </span>
+
+              <span id="contentCounter">
+                0 / 2000
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-actions">
+
+            <button
+              type="button"
+              class="clear-button"
+              id="clearButton"
+              data-i18n="clear"
+            >
+              Clear
+            </button>
+
+            <button
+              type="submit"
+              class="primary-button"
+              id="addNoteButton"
+            >
+              <span>➕</span>
+              <span data-i18n="addNote">
+                Add Note
+              </span>
+            </button>
+
+          </div>
+
+        </form>
+
+      </section>
+
+
+      <!-- NOTES -->
+
+      <section class="notes-section">
+
+        <div class="notes-header">
+
+          <div>
+
+            <span class="eyebrow">
+              📚
+              <span data-i18n="collection">
+                COLLECTION
+              </span>
+            </span>
+
+            <h2 data-i18n="yourNotes">
+              Your Notes
+            </h2>
+
+          </div>
+
+          <span
+            class="note-count"
+            id="noteCount"
+          >
+            0 notes
+          </span>
+
+        </div>
+
+
+        <!-- TOOLBAR -->
+
+        <div class="notes-toolbar">
+
+          <div class="search-wrapper">
+
+            <span class="search-icon">
+              🔍
+            </span>
+
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search notes..."
+              data-i18n-placeholder="searchPlaceholder"
+            />
+
+          </div>
+
+
+          <select id="sortSelect">
+
+            <option value="newest" data-i18n="newest">
+              Newest first
+            </option>
+
+            <option value="oldest" data-i18n="oldest">
+              Oldest first
+            </option>
+
+            <option value="az" data-i18n="az">
+              A → Z
+            </option>
+
+            <option value="za" data-i18n="za">
+              Z → A
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div
+          id="message"
+          class="message"
+        ></div>
+
+
+        <div
+          id="notesContainer"
+          class="notes-grid"
+        >
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+      <span>
+        📝 Quick Notes
+      </span>
+
+      <span>
+        <span data-i18n="builtWith">
+          Built with
+        </span>
+        ❤️
+        <span data-i18n="forIdeas">
+          for your ideas
+        </span>
+      </span>
+
+    </footer>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
